@@ -1,20 +1,62 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import ZamestnanciView from '../views/ZamestnanciView.vue'
+// import DetailView from '../views/DetailView.vue'
+// import EditUserView from '../views/editUser.vue'
+import PozicieView from '../views/PozicieView.vue'
+import VytvoritPoziciuView from '../views/VytvoritPoziciuView.vue'
+// import ArchivovanyView from '../views/ArchivovanyView.vue'
+//import ArchivovanyDetailView from '../views/ArchivovanyDetailView.vue'
+// import VytvoritView from '../views/VytvoritView.vue'
+import neklikat from '../views/NEFUNGUJE.vue'
+import ArchivovanyViewVue from '../views/ArchivovanyView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'zamestnanci',
+    component: ZamestnanciView
+  },
+  // {
+  //   path: '/vytvorit',
+  //   name: 'vytvorit',
+  //   component: VytvoritView
+  // },
+  // {
+  //   path: '/editUser',
+  //   name: 'edituser',
+  //   component: EditUserView
+  // },
+  // {
+  //   path: '/detail/:id',
+  //   name: 'detail',
+  //   component: DetailView
+  // },
+   {
+     path: '/Pozicie',
+     name: 'pozicie',
+     component: PozicieView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/Vytvoritpoziciu',
+    name: 'vytvoritPozicie',
+    component: VytvoritPoziciuView
+  },
+  {
+    path: '/Archivovany',
+    name: 'archivovany',
+    component: ArchivovanyViewVue
+  },
+  // {
+  //   path: '/detailarchivovany/:id',
+  //   name: 'archivovanydetail',
+  //   component: ArchivovanyDetailView
+  // },
+  {
+    path: '/NEKLIKAT',
+    name: 'zakazane',
+    component: neklikat
   }
+
 ]
 
 const router = createRouter({
