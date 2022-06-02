@@ -49,7 +49,7 @@ import Zamestnanci from '../Types/Zamestnanci';
 import api from '../services/Zamestnanec';
 import ResponseData from '../Types/ResponseData';
 
-export default defineComponent({
+export default defineComponent({ 
     name: "Modal_put",
 
         data(){
