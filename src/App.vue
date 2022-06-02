@@ -20,7 +20,8 @@
     </ul>
   </div>
 </nav>
-</div><router-view/>
+</div>
+<router-view/>
 </template>
 
 <style>

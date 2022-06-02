@@ -77,6 +77,7 @@ export default defineComponent({
             Zamestnanec.getAll().then((response: ResponseData) => {
                 this.zamestnanci = response.data;
                 console.log(response.data);}).catch((e: Error) => {
+                confirm("Server nie je zapnuty");
                 console.log(e); });
         },
 

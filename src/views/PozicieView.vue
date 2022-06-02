@@ -17,7 +17,7 @@
   </thead>
   <tbody>
    
-      <tr v-for="(poz, index) in pozicie" :key="index">  
+      <tr v-for="poz in pozicie" :key="poz.poziciaId">  
                    <td>{{poz.nazovPozicie}}</td>  
                 
       <th></th>
@@ -61,23 +61,20 @@ export default defineComponent({
         Get() {
             pozicie.getAll().then((response: ResponseData) => {
                 this.pozicie = response.data;
-                console.log(response.data);
-            })
-                .catch((e: Error) => {
-                console.log(e);
-            });
+                console.log(response.data);})
+                .catch((e: Error) => { confirm("Server nie je zapnuty");
+                console.log(e);});
         },
         
-        Delete(poziciaId:number){
+        
+        Delete(poziciaId:number){ if(confirm("Chcete určite trvalo zmazať poziciu ?")){
           pozicie.delete(poziciaId).then((response: ResponseData) => {
           console.log(response.data);
-          this.Get();
-        })
-        .catch((e: Error) => {
-          console.log(e);
-        });
+          this.Get();}).catch((e: Error) => { 
+            confirm("Poziciu ma pridelenu niektory zo zamestnancov, nemozete tuto poziciu zmazat.")
+            console.log(e);});
+        }},
     },
-  },
 
     mounted() {
         this.Get();

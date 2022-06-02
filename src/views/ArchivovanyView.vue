@@ -74,6 +74,7 @@ export default defineComponent({
                 console.log(response.data);
             })
                 .catch((e: Error) => {
+                confirm("Server nie je zapnuty");
                 console.log(e);
             });
         },

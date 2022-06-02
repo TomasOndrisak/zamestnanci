@@ -30,9 +30,7 @@
                 
                 <select class="form-select" v-model="zamestnanec.idPozicie" required>
                     <option value="" selected disabled hidden>Pozícia</option>
-                    <option value="1" placeholder="Pozícia">1</option>
-                    <option value="11" placeholder="Pozícia">11</option>
-                 
+                    <option v-for="(poz, index) in pozicie" :key="index" placeholder="Pozícia">{{pozicie[index].poziciaId}}</option>
                 </select>
             </div>
 
@@ -57,7 +55,9 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import Zamestnanec from '../Types/Zamestnanci';
+import Pozicie from '../Types/Pozicie'
 import api from '../services/Zamestnanec';
+import poz from '../services/Pozicie';
 import ResponseData from '../Types/ResponseData';
 
 export default defineComponent({
@@ -65,6 +65,8 @@ export default defineComponent({
     
    data(){
      return {
+
+       pozicie: [] as Pozicie[],
 
        zamestnanec: {
          zamestnanecId: 0,
@@ -82,20 +84,35 @@ export default defineComponent({
 
    },
    methods: {
-     Post(){
-       api.Post(this.zamestnanec).then((response: ResponseData) => {
-               
+     get(){
+       poz.getAll().then((response: ResponseData) => {
+               this.pozicie = response.data;
                 console.log(response.data);
             })
                 .catch((e: Error) => {
                 console.log(e);
-                 api.getAll();
             });
+     },
+     Post(){
+       api.Post(this.zamestnanec).then((response: ResponseData) => {
+                console.log(response.data);
+                
+                
+
+            })
+                .catch((e: Error) => {
+                console.log(e);
+                 
+            });   
      },
 
 
 
-   }
+   },
+
+    mounted() {
+        this.get();
+    }
     
 
 });
