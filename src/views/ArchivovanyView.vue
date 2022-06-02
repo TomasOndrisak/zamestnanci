@@ -1,7 +1,7 @@
 <template>
 <div>
   <br>
-<h1>Zoznam Zamestnancov</h1>
+<h1>Zoznam Archivovanych</h1>
 
 <div class="container">
        <br><br><br>
@@ -20,8 +20,7 @@
         <td>{{zam.zamestnanecId}}</td>
         <td><a v-b-modal="'modalZamestnanec' + zam.zamestnanecId">{{zam.meno}} {{zam.priezvisko}}</a></td>
         <td>{{zam.idPozicie}}</td> 
-        <td><button class="btn btn-warning">Editovať</button></td>
-        <td><button type="button" class="btn btn-danger">Zmazať</button></td> 
+        <td><button type="button" class="btn btn-danger" v-on:click="Delete(zam.zamestnanecId)">Zmazať</button></td> 
       </tr>
   </tbody>
 </table>
@@ -88,6 +87,21 @@ export default defineComponent({
                 console.log(e);
             });
         },
+
+        Delete(id:number){
+          if(confirm("Chcete určite trvalo zmazať zamestnanca ?")){
+          Zamestnanec.delete(id).then((response: ResponseData) => {
+          console.log(response.data);
+          this.Get();
+        })
+        .catch((e: Error) => {
+          console.log(e);
+        });
+        
+        Zamestnanec.getArchivovany();}
+        
+    },
+
     },
     mounted() {
         this.Get();

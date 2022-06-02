@@ -7,11 +7,23 @@ class Zamestnanec {
   getArchivovany(): Promise<any> {
     return http.get("/Zamestnanci/archivovany/true");
   }
-
+  delete(zamestnanecId: any): Promise<any> {
+    return http.delete(`/Zamestnanci/${zamestnanecId}`);
+  }
 
   getId(id: any): Promise<any>{
-    return http.get('/Zamestnanci/'+{id});
+    return http.get('/Zamestnanci/'+id);
   }
+
+
+  
+  Edit(id: any, data: any): Promise<any> {
+    return http.put("/Zamestnanci/"+id, data);
+  }
+
+  Post(data: any): Promise<any> {
+      return http.post("/Zamestnanci/", data);
+    }
   // get(id: any): Promise<any> {
   //   return http.get(`/Zamestnanci/${id}`);
   // }

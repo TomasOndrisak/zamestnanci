@@ -3,9 +3,8 @@ export default interface Zamestnanci {
     meno: string;
     priezvisko: string;
     adresa: string;
-    datumNarodenia: Date;
-    datumNastupu: Date;
+    datumNarodenia: string;
+    datumNastupu: string;
     archivovany: boolean;
     idPozicie: number;
-    plat: number;
   }

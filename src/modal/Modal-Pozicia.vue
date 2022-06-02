@@ -1,0 +1,59 @@
+<template>
+
+ <b-modal class="modal" id="poziciaPost" title="Vytvorit pozíciu">
+          <!-- zac -->
+        <div class="container col-12">
+<br><br><br>
+    <form @submit.prevent="Post()" class="border container form-inline"><br>
+  <div class="mb-2">
+<th>Názov pozície</th>
+    <input type="text" class="form-control" id="meno" v-model="pozicia.nazovPozicie" placeholder="nazov pozicie" required> 
+  </div>
+
+<button type="submit" class="btn btn-success btn-square-md float-end m-1">Vytvoriť</button>
+
+</form>
+</div>
+           
+           <!-- koniec -->
+           </b-modal>
+</template>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
+import api from '../services/Pozicie';
+import ResponseData from '../Types/ResponseData';
+
+export default defineComponent({
+    name: "Modal_poz",
+    
+   data(){
+     return {
+
+       pozicia: {
+         poziciaId: 0,
+         nazovPozicie: "",
+       },
+
+     };
+
+
+   },
+   methods: {
+     Post(){
+       api.PostData(this.pozicia).then((response: ResponseData) => {
+               
+                console.log(response.data);
+            })
+                .catch((e: Error) => {
+                console.log(e);
+                 api.getAll();
+            });
+     }
+
+
+
+   }
+    
+
+});
+</script>

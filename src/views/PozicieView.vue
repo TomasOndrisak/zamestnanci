@@ -5,7 +5,7 @@
  <br><br><br>
   
   <div class="Pozicie">
-    <button class="btn btn-success btn-square-md float-end">Vytvorit pozíciu</button>
+    <button v-b-modal="'poziciaPost'" class="btn btn-success btn-square-md float-end">Vytvorit pozíciu</button>
 
 <table class="table">
   <thead class="thead-light">
@@ -31,6 +31,7 @@
 
 <!-- <button class="btn btn-success btn-square-md float-end col-1">Vytvorit pozíciu</button> -->
   </div>
+  <Modal_Pozicia></Modal_Pozicia>
 </template>
 
 <script lang="ts">
@@ -38,11 +39,14 @@ import { defineComponent } from 'vue';
 import Pozicie from '../Types/Pozicie';
 import ResponseData from "../Types/ResponseData";
 import pozicie from "../services/Pozicie";
+import Modal_Pozicia from '../modal/Modal-Pozicia.vue';
 
 
 export default defineComponent({
     
-  
+     components: {
+        Modal_Pozicia
+    },
         //popup
     data() {
         return {

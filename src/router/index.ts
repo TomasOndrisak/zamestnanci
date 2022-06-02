@@ -1,13 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import ZamestnanciView from '../views/ZamestnanciView.vue'
-// import DetailView from '../views/DetailView.vue'
-// import EditUserView from '../views/editUser.vue'
 import PozicieView from '../views/PozicieView.vue'
-import VytvoritPoziciuView from '../views/VytvoritPoziciuView.vue'
-// import ArchivovanyView from '../views/ArchivovanyView.vue'
-//import ArchivovanyDetailView from '../views/ArchivovanyDetailView.vue'
-// import VytvoritView from '../views/VytvoritView.vue'
-import neklikat from '../views/NEFUNGUJE.vue'
 import ArchivovanyViewVue from '../views/ArchivovanyView.vue'
 
 const routes: Array<RouteRecordRaw> = [
@@ -37,11 +30,6 @@ const routes: Array<RouteRecordRaw> = [
      component: PozicieView
   },
   {
-    path: '/Vytvoritpoziciu',
-    name: 'vytvoritPozicie',
-    component: VytvoritPoziciuView
-  },
-  {
     path: '/Archivovany',
     name: 'archivovany',
     component: ArchivovanyViewVue
@@ -51,11 +39,6 @@ const routes: Array<RouteRecordRaw> = [
   //   name: 'archivovanydetail',
   //   component: ArchivovanyDetailView
   // },
-  {
-    path: '/NEKLIKAT',
-    name: 'zakazane',
-    component: neklikat
-  }
 
 ]
 

@@ -6,11 +6,11 @@ class Pozicie {
   }
 
     delete(poziciaId: any): Promise<any> {
-    return http.delete(`/pozicie/${poziciaId}`);
+    return http.delete("/pozicie/", poziciaId);
   }
 
-  PostData(pozicie: any): Promise<any> {
-    return http.post("/pozicie/"+ pozicie);
+  PostData(data: any): Promise<any> {
+    return http.post("/pozicie/", data);
   }
 
 
