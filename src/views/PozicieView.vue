@@ -71,7 +71,7 @@ export default defineComponent({
           pozicie.delete(poziciaId).then((response: ResponseData) => {
           console.log(response.data);
           this.Get();}).catch((e: Error) => { 
-            confirm("Poziciu ma pridelenu niektory zo zamestnancov, nemozete tuto poziciu zmazat.")
+            confirm("Poziciu ma pridelenu niektori zo zamestnancov, nemozete tuto poziciu zmazat.")
             console.log(e);});
         }},
     },

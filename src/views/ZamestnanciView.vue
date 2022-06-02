@@ -32,7 +32,7 @@
 </div>
 
 </div>
-<Modal_edit :zamestnanci="zamestnanec.zamestnanecId"></Modal_edit>
+<Modal_edit :zamestnanci="zamestnanci"></Modal_edit>
 <Modal_post :zamestnanci="zamestnanci"></Modal_post>
 <Modal_pop :Zamestnanci="zamestnanci"></Modal_pop>
 
