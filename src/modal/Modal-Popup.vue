@@ -18,9 +18,9 @@ export default defineComponent({
     name: "Modal_pop",
     props: { 
         
-        Zamestnanci : {
+       Zamestnanci : {
             required: true,
-            type: Array as PropType<Zamestnanci[]>
+             type: Array as PropType<Zamestnanci[]>
         }
     },
 
