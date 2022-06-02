@@ -1,12 +1,13 @@
 <template>
 
- <b-modal class="modal-dialog modal-fullscreen" :id="'modalZamestnanec'+zam.zamestnanecId" title="Zamestnanec" v-for="zam in Zamestnanci" v-bind:key="zam.zamestnanecId">
+ <b-modal class="modal" :id="'modalZamestnanec'+zam.zamestnanecId" title="Zamestnanec" v-for="zam in Zamestnanci" v-bind:key="zam.zamestnanecId">
            <h1><p> {{zam.meno}} {{zam.priezvisko}}<br></p></h1>   
            <p class="my-4">
-                           Adresa: <b>{{zam.adresa}}</b> <br>
-                           Pozicia: <b>{{zam.idPozicie}}</b> Plat: <b>12 345 €</b><br>
-                           Datum Narodenia: <b>{{zam.datumNarodenia}}</b><br>
-                            Datum Nastupu: <b>{{zam.datumNastupu}}</b>
+                           <b>Adresa:</b> <a>{{zam.adresa}}</a> <br>
+                           <b>Pozicia:</b> <a>{{zam.idPozicie}}</a><br>
+                           <b>Plat:</b> <a>12 345 €</a><br>
+                           <b>Datum Narodenia:</b> <a>{{zam.datumNarodenia}}</a><br>
+                            <b>Datum Nastupu:</b> <a>{{zam.datumNastupu}}</a>
        
                 </p></b-modal>
 </template>
@@ -21,9 +22,9 @@ export default defineComponent({
             required: true,
             type: Array as PropType<Zamestnanci[]>
         }
-    
-
     },
+
+
 
     
 
