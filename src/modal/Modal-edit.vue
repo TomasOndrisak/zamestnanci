@@ -1,38 +1,35 @@
 <template>
 
- <b-modal class="modal" :id="'modalZamestnanecEdit'+zam.zamestnanecId" title="Zamestnanec" v-for:="(zam, index) in zamestnanci" v-bind:key="zam.zamestnanecId" >
+ <b-modal class="modal" :id="'modalZamestnanecEdit'+ z.zamestnanecId" v-for="(z, index) in zamestnanci" v-bind:key="z.zamestnanecId" title="Zamestnanec">
            <!-- zac -->
         <div class="container col-12">
 <br><br><br>
-    <form @submit.prevent="put()" class="border container form-inline"><br>
+    <form @submit.prevent="getTutorial(z.zamestnanecId, zamestnanci[index])" class="border container form-inline"><br>
   <div class="mb-2">
 <th>Meno</th>
-    <input type="text" class="form-control" id="meno" v-model="zam.meno" placeholder="meno" required> 
+    <input type="text" class="form-control" id="meno" v-model="z.meno" :placeholder="''+ z.meno" required> 
   </div>
   <th>Priezvisko</th>
   <div class="mb-2">
-    <input type="text" class="form-control" id="priezvisko" v-model="zam.priezvisko" placeholder="priezvisko" required>
+    <input type="text" class="form-control" id="priezvisko" v-model="z.priezvisko" :placeholder="''+ z.priezvisko" required>
  </div>
  <th>Adresa</th>
   <div class="mb-2">
-    <input type="text" class="form-control" id="adresa" v-model="zam.adresa" placeholder="adresa">
+    <input type="text" class="form-control" id="adresa" v-model="z.adresa" :placeholder="''+ z.adresa">
   </div>
 <th>Dátum narodenia</th>
 <div class="mb-2">
-<input v-model="zam.datumNarodenia" placeholder="dátum narodenia" required  />
+<input v-model="z.datumNarodenia" :placeholder="''+ z.datumNarodenia" required  />
 </div>
 <th> Dátum nastupu</th>
 <div class="mb-2">
-<input v-model="zam.datumNastupu" placeholder="dátum nástupu" required/>
+<input v-model="z.datumNastupu" :placeholder="''+ z.datumNastupu" required/>
 </div>
 <th>Pozícia</th>
 <div class="input-group mb-3">
                 
-                <select class="form-select" v-model="zam.idPozicie" required>
-                    <option value="" selected disabled hidden>Pozícia</option>
-                    <option value="1" placeholder="Pozícia">1</option>
-                    <option value="11" placeholder="Pozícia">11</option>
-                 
+                <select class="form-select" v-model="z.idPozicie" required>
+                    <option v-for="(poz, index) in pozicie" :key="index" placeholder="Pozícia">{{pozicie[index].poziciaId}}</option>
                 </select>
             </div>
 
@@ -45,9 +42,11 @@
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import Zamestnanci from '../Types/Zamestnanci';
+import zamestnanci from '../Types/Zamestnanci';
 import api from '../services/Zamestnanec';
 import ResponseData from '../Types/ResponseData';
+import Pozicie from '../Types/Pozicie';
+import poz from '../services/Pozicie';
 
 export default defineComponent({ 
     name: "Modal_put",
@@ -55,7 +54,7 @@ export default defineComponent({
         data(){
         return{
       
-        
+        pozicie: [] as Pozicie[],
         Zamestnanec: {
          zamestnanecId: 0,
          meno: "",
@@ -69,42 +68,48 @@ export default defineComponent({
 
        };
     },
+
      props: { 
         
         
-        zamestnanci : {
+         zamestnanci : {
             required: true,
-             type: [] as PropType<Zamestnanci[]>
-        },
-
+             type: Array as PropType<zamestnanci[]>
+        }
     },
+
    methods: {
-    getTutorial() {
-      api.getId(this.Zamestnanec.zamestnanecId)
-        .then((response: ResponseData) => {
-          this.Zamestnanec = response.data;
-          console.log(response.data);
-        })
-        .catch((e: Error) => {
-          console.log(e);
-        });
-    },
 
-     put(){
-        
-       api.Edit(this.zamestnanci, this.Zamestnanec).then((response: ResponseData) => {
+    getTutorial(zamestnanecid: any, zamestnanec: any) {
+    
+    api.Edit(zamestnanecid , zamestnanec).then((response: ResponseData) => {
                
                 console.log(response.data);
             })
                 .catch((e: Error) => {
                 console.log(e);
-                 api.getAll();
+            });
+    
+    },
+
+        get(){
+       poz.getAll().then((response: ResponseData) => {
+               this.pozicie = response.data;
+                console.log(response.data);
+            })
+                .catch((e: Error) => {
+                console.log(e);
             });
      },
 
+   
 
 
    },
+
+      mounted() {
+        this.get();
+    }
   
   
 });

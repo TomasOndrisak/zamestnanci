@@ -1,8 +1,8 @@
 <template>
-<br>
-<h1>Zoznam pozícií vo firme</h1>
+
+
  <div class="container col-5">
- <br><br><br>
+ <br><br><br><br>
   
   <div class="Pozicie">
     <button v-b-modal="'poziciaPost'" class="btn btn-success btn-square-md float-end">Vytvorit pozíciu</button>

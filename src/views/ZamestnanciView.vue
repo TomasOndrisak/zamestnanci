@@ -1,11 +1,11 @@
 <template>
 <div>
   <br>
-<h1>Zoznam Zamestnancov</h1>
+
 
 <div class="container">
        <br><br><br>
-
+  <button v-b-modal="'ZamestnanecModal'" class="btn btn-success btn-square-md float-end">Pridať nového zamestnanca</button>
   <table class="table">
 
     <thead class="thead-light">
@@ -23,12 +23,12 @@
         <td>{{zam.zamestnanecId}}</td>
         <td><a v-b-modal="'modalZamestnanec' + zam.zamestnanecId">{{zam.meno}} {{zam.priezvisko}}</a></td>
         <td>{{zam.idPozicie}}</td> 
-        <td><button v-b-modal="'modalZamestnanecEdit'+zam.zamestnanecId" class="btn btn-warning">Editovať</button></td>
+        <td><button v-b-modal="'modalZamestnanecEdit' + zam.zamestnanecId" class="btn btn-warning">Editovať</button></td>
         <td><button type="button" class="btn btn-danger" v-on:click="Delete(zam.zamestnanecId)">Zmazať</button></td> 
       </tr>
   </tbody>
 </table>
-  <button v-b-modal="'ZamestnanecModal'" class="btn btn-success btn-square-md float-end">Pridať nového zamestnanca</button>
+
 </div>
 
 </div>
@@ -46,6 +46,7 @@ import Zamestnanec from "../services/Zamestnanec";
 import Modal_pop from '../modal/Modal-Popup.vue';
 import Modal_post from '../modal/Modal-PutPost.vue';
 import Modal_edit from '../modal/Modal-edit.vue';
+
 export default defineComponent({
 
     
@@ -64,7 +65,6 @@ export default defineComponent({
     data() {
         return {
             zamestnanci: [] as Zamestnanci[],
-            zamestnanec: {} as Zamestnanci,
         
             
         };
@@ -89,16 +89,39 @@ export default defineComponent({
                 console.log(e);});
         },
 
+
+
+
+
+
+
+
+
+
+
+
+
+
         Delete(zamestnanecId:number){
             if(confirm("chcete archivovať zamestnanca ?")){
               Zamestnanec.getId(zamestnanecId).then((response:ResponseData) =>
               {console.log(response.data)
-              this.zamestnanec = response.data;
-              Zamestnanec.Edit(zamestnanecId, this.zamestnanec).then((response:ResponseData) =>
-              {console.log(console.error(response.data)) });
-              });
-              
-              }
+
+              Zamestnanec.archivuj(zamestnanecId, response.data).then((response:ResponseData) =>
+              {console.log(console.error(response.data))
+               this.Get();});
+              }).catch((e: Error) => {
+          console.log(e);
+        }); }
+
+
+
+
+
+
+
+
+
             else if (confirm("Chcete trvalo zmazat zamestnanca ?")){
           Zamestnanec.delete(zamestnanecId).then((response: ResponseData) => {
           console.log(response.data);
@@ -109,6 +132,20 @@ export default defineComponent({
         }
         
     },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
      
 

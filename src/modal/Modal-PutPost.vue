@@ -9,23 +9,23 @@
 <th>Meno</th>
     <input type="text" class="form-control" id="meno" v-model="zamestnanec.meno" placeholder="meno" required> 
   </div>
-  <th>Priezvisko</th>
+    <th>Priezvisko</th>
   <div class="mb-2">
     <input type="text" class="form-control" id="priezvisko" v-model="zamestnanec.priezvisko" placeholder="priezvisko" required>
  </div>
- <th>Adresa</th>
+    <th>Adresa</th>
   <div class="mb-2">
     <input type="text" class="form-control" id="adresa" v-model="zamestnanec.adresa" placeholder="adresa">
   </div>
-<th>Dátum narodenia</th>
+  <th>Dátum narodenia</th>  
 <div class="mb-2">
-<input v-model="zamestnanec.datumNarodenia" type="date" placeholder="dátum narodenia" required  />
+  <input v-model="zamestnanec.datumNarodenia" type="date" placeholder="dátum narodenia" required  />
 </div>
-<th> Dátum nastupu</th>
+  <th> Dátum nastupu</th>
 <div class="mb-2">
-<input v-model="zamestnanec.datumNastupu" type="date" placeholder="dátum nástupu" required/>
+  <input v-model="zamestnanec.datumNastupu" type="date" placeholder="dátum nástupu" required/>
 </div>
-<th>Pozícia</th>
+  <th>Pozícia</th>
 <div class="input-group mb-3">
                 
                 <select class="form-select" v-model="zamestnanec.idPozicie" required>
@@ -96,7 +96,7 @@ export default defineComponent({
      Post(){
        api.Post(this.zamestnanec).then((response: ResponseData) => {
                 console.log(response.data);
-                
+                api.getAll();
                 
 
             })

@@ -1,10 +1,9 @@
 <template>
 <div>
-  <br>
-<h1>Zoznam Archivovanych</h1>
+
 
 <div class="container">
-       <br><br><br>
+       <br><br><br><br><br><br>
   
   <table class="table">
     <thead class="thead-light">

@@ -1,6 +1,6 @@
 <template>
    <div class="container nav nav-tabs justify-content-center">
- <nav class="navbar navbar-expand navbar-light">
+ <nav class="navbar navbar-expand navbar">
   
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -43,6 +43,7 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #000000;
+  font-weight: bolder;
 }
 </style>
