@@ -4,7 +4,7 @@
            <h1><p> {{zam.meno}} {{zam.priezvisko}}<br></p></h1>   
            <p class="my-4">
                            <b>Adresa:</b> <a>{{zam.adresa}}</a> <br>
-                           <b>Pozicia:</b> <a>{{zam.idPozicie}}</a><br>
+                           <b>Pozicia:</b> <a>{{zam.pozicie.nazovPozicie}}</a><br>
                            <b>Plat:</b> <a>12 345 €</a><br>
                            <b>Datum Narodenia:</b> <a>{{zam.datumNarodenia}}</a><br>
                             <b>Datum Nastupu:</b> <a>{{zam.datumNastupu}}</a>

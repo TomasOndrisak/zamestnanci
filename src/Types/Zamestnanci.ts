@@ -6,5 +6,7 @@ export default interface Zamestnanci {
     datumNarodenia: string;
     datumNastupu: string;
     archivovany: boolean;
-    idPozicie: number;
-  }
+    poziciaId: number;
+    pozicie: any;
+    
+}

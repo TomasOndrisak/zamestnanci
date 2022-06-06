@@ -22,7 +22,7 @@
         <tr v-for="(zam, index) in zamestnanci" v-bind:key="index">
         <td>{{zam.zamestnanecId}}</td>
         <td><a v-b-modal="'modalZamestnanec' + zam.zamestnanecId">{{zam.meno}} {{zam.priezvisko}}</a></td>
-        <td>{{zam.idPozicie}}</td> 
+        <td>{{zam.pozicie.nazovPozicie}}</td> 
         <td><button v-b-modal="'modalZamestnanecEdit' + zam.zamestnanecId" class="btn btn-warning">Editovať</button></td>
         <td><button type="button" class="btn btn-danger" v-on:click="Delete(zam.zamestnanecId)">Zmazať</button></td> 
       </tr>
@@ -76,6 +76,7 @@ export default defineComponent({
         Get() {
             Zamestnanec.getAll().then((response: ResponseData) => {
                 this.zamestnanci = response.data;
+                
                 console.log(response.data);}).catch((e: Error) => {
                 confirm("Server nie je zapnuty");
                 console.log(e); });

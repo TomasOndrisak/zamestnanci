@@ -28,13 +28,11 @@
   <th>Pozícia</th>
 <div class="input-group mb-3">
                 
-                <select class="form-select" v-model="zamestnanec.idPozicie" required>
+                <select class="form-select" v-model="zamestnanec.poziciaId" required>
                     <option value="" selected disabled hidden>Pozícia</option>
-                    <option v-for="(poz, index) in pozicie" :key="index" placeholder="Pozícia">{{pozicie[index].poziciaId}}</option>
+                    <option v-for="(poz, index) in pozicie" :key="index" placeholder="Pozície" :value="poz.poziciaId">{{(pozicie[index].nazovPozicie)}}</option>
                 </select>
             </div>
-
-
 
 
 
@@ -64,6 +62,7 @@ export default defineComponent({
     name: "Modal_pop",
     
    data(){
+
      return {
 
        pozicie: [] as Pozicie[],
@@ -76,7 +75,7 @@ export default defineComponent({
          datumNarodenia: "",
          datumNastupu: "",
          archivovany: false,
-         idPozicie: "",
+         poziciaId: "",
        },
 
      };
