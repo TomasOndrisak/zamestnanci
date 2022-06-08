@@ -3,5 +3,7 @@ export default interface Predosle {
     zamestnanecId: number,
     poziciaId: number,
     datumNastupu: Date,
-    datumUkoncenia: Date
+    datumUkoncenia: Date,
+    pozicie: any;
+
   }

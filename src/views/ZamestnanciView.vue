@@ -10,7 +10,6 @@
 
     <thead class="thead-light">
     <tr>
-      <th scope="col">ID</th>
       <th scope="col">Meno priezvisko</th>
       <th scope="col">Pozícia</th>
       <th scope="col"></th>
@@ -20,10 +19,9 @@
 
   <tbody>
         <tr v-for="(zam, index) in zamestnanci" v-bind:key="index">
-        <td>{{zam.zamestnanecId}}</td>
         <td><a v-b-modal="'modalZamestnanec' + zam.zamestnanecId">{{zam.meno}} {{zam.priezvisko}}</a></td>
         <td>{{zam.pozicie.nazovPozicie}}</td> 
-        <td><button v-b-modal="'modalZamestnanecEdit' + zam.zamestnanecId" class="btn btn-warning">Editovať</button></td>
+        <td><button v-b-modal="'modalZamestnanecEdit' + zam.zamestnanecId"  class="btn btn-warning">Editovať</button></td>
         <td><button type="button" class="btn btn-danger" v-on:click="Delete(zam.zamestnanecId)">Zmazať</button></td> 
       </tr>
   </tbody>
@@ -32,7 +30,7 @@
 </div>
 
 </div>
-<Modal_edit :zamestnanci="zamestnanci"></Modal_edit>
+<Modal_edit :id="4"  :zamestnanci="zamestnanci"></Modal_edit>
 <Modal_post :zamestnanci="zamestnanci"></Modal_post>
 <Modal_pop :Zamestnanci="zamestnanci"></Modal_pop>
 
@@ -57,11 +55,6 @@ export default defineComponent({
         Modal_post,
         Modal_edit
     },
-    
-    
-
-    
-        //popup
     data() {
         return {
             zamestnanci: [] as Zamestnanci[],
@@ -90,19 +83,6 @@ export default defineComponent({
                 console.log(e);});
         },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         Delete(zamestnanecId:number){
             if(confirm("chcete archivovať zamestnanca ?")){
               Zamestnanec.getId(zamestnanecId).then((response:ResponseData) =>
@@ -115,14 +95,6 @@ export default defineComponent({
           console.log(e);
         }); }
 
-
-
-
-
-
-
-
-
             else if (confirm("Chcete trvalo zmazat zamestnanca ?")){
           Zamestnanec.delete(zamestnanecId).then((response: ResponseData) => {
           console.log(response.data);
@@ -134,26 +106,10 @@ export default defineComponent({
         
     },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
-
-
     },
     mounted() {
         this.Get();
+        
     },
     
 })

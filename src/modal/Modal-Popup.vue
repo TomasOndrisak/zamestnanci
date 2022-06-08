@@ -16,8 +16,8 @@ import { defineComponent, PropType } from 'vue';
 import Zamestnanci from '../Types/Zamestnanci';
 export default defineComponent({
     name: "Modal_pop",
-    props: { 
-        
+
+    props: {   
        Zamestnanci : {
             required: true,
              type: Array as PropType<Zamestnanci[]>

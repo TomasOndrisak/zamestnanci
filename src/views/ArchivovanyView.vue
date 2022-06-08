@@ -1,5 +1,5 @@
 <template>
-<div>
+
 
 
 <div class="container">
@@ -8,28 +8,22 @@
   <table class="table">
     <thead class="thead-light">
     <tr>
-      <th scope="col">ID</th>
       <th scope="col">Meno priezvisko</th>
-      <th scope="col">Pozícia</th>
+      <th scope="col">Posledná Pozícia</th>
       <th scope="col"></th>
     </tr>
     </thead>
   <tbody>
         <tr v-for="(zam, index) in zamestnanci" v-bind:key="index">
-        <td>{{zam.zamestnanecId}}</td>
         <td><a v-b-modal="'modalZamestnanec' + zam.zamestnanecId">{{zam.meno}} {{zam.priezvisko}}</a></td>
         <td>{{zam.pozicie.nazovPozicie}}</td> 
+        <td> </td>
         <td><button type="button" class="btn btn-danger" v-on:click="Delete(zam.zamestnanecId)">Zmazať</button></td> 
       </tr>
   </tbody>
 </table>
-  <!-- <button class="btn btn-success btn-square-md float-end">Pridať nového zamestnanca</button> -->
 </div>
 
-</div>
-<div>
-    
-</div>
 
 <Modal_pop :Zamestnanci="zamestnanci">
 </Modal_pop>

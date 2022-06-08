@@ -1,22 +1,22 @@
 <template>
 
- <b-modal class="modal" id="poziciaPost" title="Vytvorit pozíciu">
-          <!-- zac -->
-        <div class="container col-12">
-<br><br><br>
-    <form @submit.prevent="Post()" class="border container form-inline"><br>
-  <div class="mb-2">
-<th>Názov pozície</th>
-    <input type="text" class="form-control" id="meno" v-model="pozicia.nazovPozicie" placeholder="nazov pozicie" required> 
-  </div>
+  <b-modal class="modal" id="poziciaPost" title="Vytvorit pozíciu">
+    <!-- zac -->
+    <div>
+      <form @submit.prevent="Post()" class="container form-inline"><br>
+        <div class="mb-2">
+          <th>Názov pozície</th>
+          <input type="text" class="form-control" id="meno" v-model="pozicia.nazovPozicie" placeholder="nazov pozicie"
+            required>
+        </div>
 
-<button type="submit" class="btn btn-success btn-square-md float-end m-1">Vytvoriť</button>
+        <button type="submit" class="btn btn-success btn-square-md float-end m-1">Vytvoriť</button>
 
-</form>
-</div>
-           
-           <!-- koniec -->
-           </b-modal>
+      </form>
+    </div>
+
+    <!-- koniec -->
+  </b-modal>
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
