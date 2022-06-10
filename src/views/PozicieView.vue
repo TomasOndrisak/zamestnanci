@@ -2,7 +2,7 @@
   <div class="container col-5">
     <br><br><br><br>
     <div class="Pozicie">
-      <button v-b-modal="'poziciaPost'" class="btn btn-success btn-square-md float-end">Vytvorit pozíciu</button>
+      <button v-b-modal="'poziciaPost'" class="btn btn-secondary btn-square-md float-end">Vytvorit pozíciu</button>
       <table class="table">
         <thead class="thead-light">
           <tr>

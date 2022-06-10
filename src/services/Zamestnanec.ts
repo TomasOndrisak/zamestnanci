@@ -21,11 +21,11 @@ class Zamestnanec {
     
   }
   
-  Edit(id: any, data: any): Promise<any> {
+  Edit(id: any, data: any): Promise<any>{
     return http.put("api/Zamestnanci/"+id, data);
   }
 
-  Post(data: any): Promise<any> {
+  Post(data: any): Promise<any>{
       return http.post("api/Zamestnanci/", data);
     }
  

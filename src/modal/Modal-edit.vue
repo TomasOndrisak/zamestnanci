@@ -1,36 +1,35 @@
 <template>
 
-  <b-modal class="modal busy-true" :id="'modalZamestnanecEdit' + z.zamestnanecId" v-for="(z, index) in zamestnanci" v-bind:key="z.zamestnanecId" title="Zamestnanec">
+  <b-modal class="modal" :id="'modalZamestnanecEdit'" title="Zamestnanec">
     <div class="container col-12">
       <br><br><br>
-      <form @submit.prevent="Edit(z.zamestnanecId, zamestnanci[index])" class="border container form-inline"><br>
+      <form @submit.prevent="Edit()" class="border container form-inline"><br>
         <div class="mb-2">
           <th>Meno</th>
-          <input type="text" class="form-control" id="meno" v-model="z.meno" :placeholder="'' + z.meno" required>
+          <input v-model="post.meno" type="text" class="form-control" id="meno">
         </div>
         <th>Priezvisko</th>
         <div class="mb-2">
-          <input type="text" class="form-control" id="priezvisko" v-model="z.priezvisko" :placeholder="'' + z.priezvisko" required>
+         <input type="text" class="form-control" v-model="post.priezvisko">
         </div>
         <th>Adresa</th>
         <div class="mb-2">
-          <input type="text" class="form-control" id="adresa" v-model="z.adresa" :placeholder="'' + z.adresa">
+          <input type="text" class="form-control" v-model="post.adresa">
         </div>
         <th>Dátum narodenia</th>
         <div class="mb-2">
-          <input v-model="z.datumNarodenia" :placeholder="'' + z.datumNarodenia" required />
+        <input type="text" class="form-control" v-model="post.datumNarodenia">
         </div>
         <th> Dátum nastupu</th>
         <div class="mb-2">
-          <input v-model="z.datumNastupu" :placeholder="'' + z.datumNastupu" required />
+          <input type="text" class="form-control" v-model="post.datumNastupu">
         </div>
         <th>Pozícia</th>
         <div class="input-group mb-3">
-
-          <select class="form-select" v-model="z.poziciaId" required>
+            <select class="form-select" v-model="post.poziciaId" required>
             <option value="" selected disabled hidden>Pozícia</option>
             <option v-for="(poz, index) in pozicie" :key="index" placeholder="Pozície" :value="poz.poziciaId">
-              {{ (pozicie[index].nazovPozicie) }}</option>
+              {{(pozicie, index, poz.nazovPozicie)}}</option>
           </select>
         </div>
 
@@ -49,7 +48,7 @@
 
 
         <tbody>
-          <tr v-for="poz in predoslePozicie" v-bind:key="poz.zamestnanecId">
+          <tr v-for="(poz, index) in predoslePozicie" v-bind:key="index">
             <td>{{ poz.pozicie.nazovPozicie }}</td>
             <td>{{ poz.datumNastupu }}</td>
             <td>{{ poz.datumUkoncenia }}</td>
@@ -74,58 +73,79 @@ import predosle from '../services/Predosle';
 import zamestnanci from '../Types/Zamestnanci';
 import ResponseData from '../Types/ResponseData';
 import Ipredosle from '../Types/Predosle';
-import Pozicie from '../Types/Pozicie';
+import IPozicie from '../Types/Pozicie';
 
 
 
 export default defineComponent({
-  name: "Modal_put",
-
-
-
+  name: "Modal_edit",
+  updated(){
+  this.GetPredosle(this.$props.zamestnanec.zamestnanecId);
+  
+  
+  },
+  beforeUpdate(){
+  this.GetId();
+  },
+  mounted(){
+      this.getPozicie();
+  },
 
   data() {
 
     return {
 
-      predoslePozicie: [] as Ipredosle[],
-      pozicie: [] as Pozicie[],
-      
-      Zamestnanec: {
-        zamestnanecId: 0,
-        meno: "",
-        priezvisko: "",
-        adresa: "",
-        datumNarodenia: "",
-        datumNastupu: "",
-        archivovany: false,
-        idPozicie: 0,  
-      },
+  predoslePozicie: [] as Ipredosle[],
+  pozicie: [] as IPozicie[],
 
-      showModal: false
-    };
+  Zamestnanec: {} as zamestnanci,
+  post: {
+    zamestnanecId: "",
+    meno: "",
+    priezvisko: "",
+    adresa: "",
+    datumNarodenia: "",
+    datumNastupu: "",
+    poziciaId:"",
+  }
+};
   },
 
   props: {
-
-    id: Number,
-    
-    zamestnanci: {
+    zamestnanec: {
       required: true,
-      type: Array as PropType<zamestnanci[]>
+      type: Object as PropType<zamestnanci>
     }
+
+  },
+
+  watch: {
     
+    zamestnanec: function (newVal, oldVal) {
+      console.log('Prop changed: ', newVal, ' | was: ', oldVal)
+    }
   },
 
   methods: {
 
+    
+       refresh(){
+        this.$emit("refresh");
+      },
+     GetPredosle(id: number) {
 
-
-    GetPredosle(id:number) {
-
-      predosle.getAll(id).then((response: ResponseData) => {
+        predosle.getAll(id).then((response: ResponseData) => {
         this.predoslePozicie = response.data;
-        
+
+        console.log(response.data);
+      }).catch((e: Error) => {
+        console.log(e);
+      });
+    },
+
+    GetId(){
+      api.getId(this.zamestnanec.zamestnanecId).then((response: ResponseData) => {
+        this.post = response.data;
         console.log(response.data);
       }).catch((e: Error) => {
         console.log(e);
@@ -133,12 +153,11 @@ export default defineComponent({
     },
 
 
-    Edit(zamestnanecid: any, zamestnanec: any) {
-
-      api.Edit(zamestnanecid, zamestnanec).then((response: ResponseData) => {
+    Edit() {
+      api.Edit(this.post.zamestnanecId, this.post).then((response: ResponseData) => {
         console.log(response.data);
+        this.refresh();
       }).catch((e: Error) => { console.log(e); });
-
     },
 
     getPozicie() {
@@ -146,17 +165,9 @@ export default defineComponent({
         this.pozicie = response.data;
         console.log(response.data);
       }).catch((e: Error) => {
-          console.log(e);
-        });
-
-      
+        console.log(e);
+      });
     },
-  },
-
-  mounted() {
-    
-    this.getPozicie();
-    this.GetPredosle(this.Zamestnanec.idPozicie);
-  },
+  }
 });
 </script>

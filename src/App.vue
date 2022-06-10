@@ -1,17 +1,17 @@
 <template>
 
-   <div class="container nav nav justify-content-center">
+   <div class="nav navbar-dark bg-secondary justify-content-center">
  <nav class="navbar navbar-expand navbar">
-  <div class="collapse navbar-collapse" id="navbarNav">
+  <div id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <router-link class="nav-link h4" to="/">Zoznam aktuálnych zamestnancov</router-link>
+        <router-link class="nav-link" to="/">Zoznam aktuálnych zamestnancov</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link h4" to="/archivovany">Zoznam predošlých zamestnancov</router-link>
+        <router-link class="nav-link" to="/archivovany">Zoznam predošlých zamestnancov</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link h4" to="/Pozicie">Zoznam pozícií vo firme</router-link>
+        <router-link class="nav-link" to="/Pozicie">Zoznam pozícií vo firme</router-link>
       </li>
      
     </ul>
@@ -22,26 +22,24 @@
 
 </template>
 
+
 <style>
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 nav {
-  padding: 30px;
+  color: rgb(0, 0, 0);
+  font-size: 17px;
+  
+   
 }
-
 nav a {
   font-weight: bold;
-  color: #92a0af;
-}
-
-nav a.router-link-exact-active {
-  color: #000000;
-  font-weight: bolder;
 }
 </style>

@@ -6,7 +6,7 @@
     <form @submit.prevent="Post()" class="container form-inline"><br>
   <div class="mb-2">
 <th>Meno</th>
-    <input type="text" class="form-control" id="meno" v-model="Zamestnanec.meno" placeholder="meno" required> 
+    <input type="text" class="form-control" id="meno" v-model="Zamestnanec.meno" required> 
   </div>
     <th>Priezvisko</th>
   <div class="mb-2">
