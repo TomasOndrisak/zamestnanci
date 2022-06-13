@@ -28,7 +28,7 @@
 </div>
 </div>
 <Modal_edit @refresh="Get" :zamestnanec="zamestnanec"></Modal_edit>
-<Modal_post :zamestnanci="zamestnanci"></Modal_post>
+<Modal_post @ref="Get" :zamestnanci="zamestnanci"></Modal_post>
 <Modal_pop :Zamestnanci="zamestnanci"></Modal_pop>
 
 </template>

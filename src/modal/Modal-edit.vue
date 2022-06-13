@@ -1,8 +1,8 @@
 <template>
 
-  <b-modal class="modal" :id="'modalZamestnanecEdit'" title="Zamestnanec">
+  <b-modal class="modal" :id="'modalZamestnanecEdit'" title="Upravit Zamestnanca">
     <div class="container col-12">
-      <br><br><br>
+   
       <form @submit.prevent="Edit()" class="border container form-inline"><br>
         <div class="mb-2">
           <th>Meno</th>
@@ -33,9 +33,13 @@
           </select>
         </div>
 
-        <button type="submit" class="btn btn-success btn-square-md float-end m-1">Uložiť zmenu</button>
-
+        <!-- <button type="submit" class="btn btn-success btn-square-md float-end m-1">Uložiť zmenu</button> -->
+        <div class="modal-footer">
+  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+  <button class="btn btn-default btn-success" type="submit" name="submit" value="Submit">Save</button>
+</div>
       </form>
+      
       <table class="table">
 
         <thead class="thead-light">
@@ -55,7 +59,7 @@
           </tr>
         </tbody>
       </table>
-
+    
 
     </div>
     <!-- koniec -->
@@ -107,7 +111,7 @@ export default defineComponent({
     datumNarodenia: "",
     datumNastupu: "",
     poziciaId:"",
-  }
+  },
 };
   },
 
@@ -127,6 +131,7 @@ export default defineComponent({
   },
 
   methods: {
+
 
     
        refresh(){
@@ -171,3 +176,9 @@ export default defineComponent({
   }
 });
 </script>
+<style>
+.modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+</style>

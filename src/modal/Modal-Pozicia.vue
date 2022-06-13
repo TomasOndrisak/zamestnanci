@@ -1,6 +1,6 @@
 <template>
 
-  <b-modal class="modal" id="poziciaPost" title="Vytvorit pozíciu">
+  <b-modal :hide-footer="true"  class="modal" id="poziciaPost" title="Vytvorit pozíciu">
     <!-- zac -->
     <div>
       <form @submit.prevent="Post()" class="container form-inline"><br>

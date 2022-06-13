@@ -1,6 +1,6 @@
 <template>
 
- <b-modal :modal-ok="true" class="modal"  id="ZamestnanecModal" title="Vytvorit/upravit">
+ <b-modal :hide-footer="true" class="modal"  id="ZamestnanecModal" title="Vytvorit">
           <!-- zac -->
         <div>
     <form @submit.prevent="Post()" class="container form-inline"><br>
@@ -33,7 +33,8 @@
                 </select>
             </div>
 
-<button type="submit" class="btn btn-success btn-square-md float-end m-1">Vytvoriť</button>
+<button type="submit" @click="ref()
+" class="btn btn-success btn-square-md float-end m-1">Vytvoriť</button>
 
 </form>
 </div>
@@ -63,7 +64,7 @@ export default defineComponent({
      return {
 
        pozicie: [] as Pozicie[],
-       showModal: false,
+      
        Zamestnanec: {
          zamestnanecId: 0,
          meno: "",
@@ -78,12 +79,10 @@ export default defineComponent({
    },
    methods: {
 
-     openModal(){
-       this.showModal=true;
-     },
-     closeModal(){
-        this.showModal=false;
-     },
+      ref(){
+        this.$emit("ref");
+      },
+
      get(){
        poz.getAll().then((response: ResponseData) => {
                this.pozicie = response.data;
@@ -96,22 +95,13 @@ export default defineComponent({
      Post(){
        api.Post(this.Zamestnanec).then((response: ResponseData) => {
                 console.log(response.data);
-                this.showModal = false;
-                
-
-            })
+                      this.ref();
+                })
                 .catch((e: Error) => {
                 console.log(e);
                  
             });   
-
-             poz.getAll().then((response: ResponseData) => {
-               this.pozicie = response.data;
-                console.log(response.data);
-            })
-                .catch((e: Error) => {
-                console.log(e);
-            });
+          
      },
 
 
