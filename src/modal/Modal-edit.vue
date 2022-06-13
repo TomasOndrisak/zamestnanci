@@ -1,6 +1,6 @@
 <template>
 
-  <b-modal class="modal" :id="'modalZamestnanecEdit'" title="Upravit Zamestnanca">
+  <b-modal :hide-footer="true" class="modal" :id="'modalZamestnanecEdit'" title="Upravit Zamestnanca">
     <div class="container col-12">
    
       <form @submit.prevent="Edit()" class="border container form-inline"><br>
@@ -36,7 +36,7 @@
         <!-- <button type="submit" class="btn btn-success btn-square-md float-end m-1">Uložiť zmenu</button> -->
         <div class="modal-footer">
   <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-  <button class="btn btn-default btn-success" type="submit" name="submit" value="Submit">Save</button>
+  <button class="btn btn-default btn-success" type="submit" name="submit" value="Submit" data-bs-dismiss="modal">Save</button>
 </div>
       </form>
       
@@ -180,5 +180,6 @@ export default defineComponent({
 .modal-body {
     max-height: calc(100vh - 210px);
     overflow-y: auto;
+    
 }
 </style>

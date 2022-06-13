@@ -10,7 +10,7 @@
             required>
         </div>
 
-        <button type="submit" class="btn btn-success btn-square-md float-end m-1">Vytvoriť</button>
+        <button type="submit" class="btn btn-success btn-square-md float-end m-1" data-bs-dismiss="modal">Vytvoriť</button>
 
       </form>
     </div>
