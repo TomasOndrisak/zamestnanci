@@ -39,14 +39,19 @@ export default defineComponent({
 
    },
    methods: {
+
+        refresh(){
+        this.$emit("refresh");
+      },
+
      Post(){
        api.PostData(this.pozicia).then((response: ResponseData) => {
-               
+               this.refresh();
+               this.pozicia.nazovPozicie="";
                 console.log(response.data);
             })
                 .catch((e: Error) => {
-                console.log(e);
-                 api.getAll();
+                console.log(e);                  
             });
      }
 

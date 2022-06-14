@@ -3,10 +3,10 @@
  <b-modal :hide-footer="true" class="modal"  id="ZamestnanecModal" title="Vytvorit">
           <!-- zac -->
         <div>
-    <form @submit.prevent="Post()" class="container form-inline"><br>
+    <form ref="anyName" @submit.prevent="Post()" class="container form-inline"><br>
   <div class="mb-2">
 <th>Meno</th>
-    <input type="text" class="form-control" id="meno" v-model="Zamestnanec.meno" required> 
+    <input type="text" class="form-control" id="meno" v-model="Zamestnanec.meno" placeholder="meno" required> 
   </div>
     <th>Priezvisko</th>
   <div class="mb-2">
@@ -33,7 +33,7 @@
                 </select>
             </div>
 
-<button type="submit"  class="close-modal btn btn-success btn-square-md float-end m-1" data-bs-dismiss="modal">Vytvoriť</button>
+<button type="submit"  class="close-modal btn btn-success btn-square-md float-end m-1" >Vytvoriť</button>
 
 </form>
 </div>
@@ -95,8 +95,16 @@ export default defineComponent({
      },
      Post(){
        api.Post(this.Zamestnanec).then((response: ResponseData) => {
-                console.log(response.data);
+                console.log(response.data)
                       this.ref();
+                      this.Zamestnanec.meno = "",
+                      this.Zamestnanec.priezvisko = "",
+                      this.Zamestnanec.adresa = "",
+                      this.Zamestnanec.datumNarodenia= "",
+                      this.Zamestnanec.datumNastupu = "",
+                      this.Zamestnanec.poziciaId = ""
+
+                      
                 })
                 .catch((e: Error) => {
                 console.log(e);

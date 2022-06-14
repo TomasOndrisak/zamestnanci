@@ -21,7 +21,7 @@
       </table>
     </div>
     </div>
-  <Modal_Pozicia></Modal_Pozicia>
+  <Modal_Pozicia @refresh="Get"></Modal_Pozicia>
 </template>
 
 <script lang="ts">
